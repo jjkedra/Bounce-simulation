@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bs13w27wn7o8j"]
+
+[ext_resource type="Texture2D" uid="uid://cx3w34aci861c" path="res://art/bal.png" id="1_oms64"]
+[ext_resource type="Script" path="res://RubberBall.gd" id="1_xinsk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fsh7a"]
+radius = 25.0
+
+[node name="RubberBall" type="RigidBody2D"]
+max_contacts_reported = 5
+script = ExtResource("1_xinsk")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fsh7a")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_oms64")
+
+[connection signal="body_entered" from="." to="." method="_on_Ball_body_entered"]

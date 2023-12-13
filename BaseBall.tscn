@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://by4uoj0h1dlnb"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://bp5jxaij7bboa" path="res://pmaterial/metal.tres" id="1_cxwcj"]
+[ext_resource type="Script" path="res://BaseBall.gd" id="2_fips7"]
+[ext_resource type="Texture2D" uid="uid://sqda8oi30ytu" path="res://art/WoodenBall.png" id="2_wipsv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6lce1"]
+radius = 25.0
+
+[node name="BaseBall" type="RigidBody2D"]
+position = Vector2(365, 91)
+physics_material_override = ExtResource("1_cxwcj")
+max_contacts_reported = 5
+contact_monitor = true
+script = ExtResource("2_fips7")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6lce1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_wipsv")
+
+[connection signal="body_entered" from="." to="." method="_on_Ball_body_entered"]

@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdcwoxfy5u36b"]
+
+[ext_resource type="PackedScene" uid="uid://ddmlejv4wxf3a" path="res://MetalBall.tscn" id="1_8jpxp"]
+[ext_resource type="PackedScene" uid="uid://bs13w27wn7o8j" path="res://RubberBall.tscn" id="2_v5chv"]
+[ext_resource type="PackedScene" uid="uid://emakbgw5w2jl" path="res://metal_brick.tscn" id="2_x0oyh"]
+
+[node name="Main" type="Node"]
+
+[node name="MetalBrick7" parent="." instance=ExtResource("2_x0oyh")]
+position = Vector2(348, 430)
+
+[node name="MetalBrick4" parent="." instance=ExtResource("2_x0oyh")]
+position = Vector2(612, 191)
+rotation = 2.28464
+
+[node name="MetalBrick3" parent="." instance=ExtResource("2_x0oyh")]
+position = Vector2(478, 463)
+
+[node name="MetalBrick2" parent="." instance=ExtResource("2_x0oyh")]
+position = Vector2(398, 292)
+
+[node name="MetalBrick" parent="." instance=ExtResource("2_x0oyh")]
+position = Vector2(483, 127)
+rotation = 0.6353
+
+[node name="MetalBrick5" parent="." instance=ExtResource("2_x0oyh")]
+position = Vector2(598, 503)
+
+[node name="MetalBrick6" parent="." instance=ExtResource("2_x0oyh")]
+position = Vector2(512, 257)
+
+[node name="MetalBrick8" parent="." instance=ExtResource("2_x0oyh")]
+position = Vector2(258, 354)
+rotation = 0.760964
+
+[node name="RubberBall" parent="." instance=ExtResource("2_v5chv")]
+position = Vector2(528, 77)
+
+[node name="MetalBall" parent="." instance=ExtResource("1_8jpxp")]
+position = Vector2(577, 122)
