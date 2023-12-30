@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://qncxhjgx1wsg"]
+
+[ext_resource type="Script" path="res://MagnetBall.gd" id="1_0f4kr"]
+[ext_resource type="Texture2D" uid="uid://cf3fmruikvxqt" path="res://art/MagnetBall.png" id="2_oo7bb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_noyki"]
+radius = 25.0
+
+[node name="MagnetBall" type="RigidBody2D"]
+script = ExtResource("1_0f4kr")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_oo7bb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_noyki")

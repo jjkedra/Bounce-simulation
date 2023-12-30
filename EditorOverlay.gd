@@ -47,9 +47,9 @@ func spawn_entity(entity_type: int):  # Assuming entity_type is passed to decide
 	new_entity.position = get_global_mouse_position()  # Place the entity at the mouse position
 	add_child(new_entity)  # Add the entity to the scene tree
 
-	if entity_type <= 2 and entity_type >= 0:
+	if entity_type <= 9 and entity_type >= 0:
 		new_entity.add_to_group("balls")
-	elif entity_type <= 3:
+	elif entity_type >= 10:
 		new_entity.add_to_group("bricks")
 	panning = true
 	panned_item = new_entity
@@ -66,7 +66,11 @@ func load_entity_from_type(entity_type: int) -> PackedScene:
 		2:
 			entity_scene_path = "res://RubberBall.tscn" 
 		3:
+			entity_scene_path = "res://MagnetBall.tscn" 
+		10:
 			entity_scene_path = "res://MetalBrick.tscn" 
+		11:
+			entity_scene_path = "res://WoodenBrick.tscn" 
 	# Load the PackedScene for the entity based on the determined path
 	var entity_scene = load(entity_scene_path)
 	return entity_scene

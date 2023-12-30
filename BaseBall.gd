@@ -8,6 +8,7 @@ var trigger_timer = 0  # Timer to keep track of cooldown
 var can_trigger = true  # Flag to control triggering
 var freezed_ball = true # Flag to pause the ball (when moving etc.)
 var can_grab = false    # Flag for editing
+const wood_audio_file = "res://audio/WoodenBall.mp3"
 
 func _init():
 	print("AYO FROM BASE")
@@ -29,14 +30,14 @@ func _process(delta):
 				can_trigger = true
 
 func get_audio_file():
-	return audio_file
+	return wood_audio_file
 
 func freeze_ball(freeze: bool):
 	set_freeze_enabled(freeze)
 
 func _on_Ball_body_entered(body):
 	var ball_player = AudioStreamPlayer.new()
-	add_child(ball_player)	
+	add_child(ball_player)
 	if can_trigger:
 		var sfx = load(get_audio_file())
 		if sfx:

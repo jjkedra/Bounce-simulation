@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7x0m2jpl04ln"]
+[gd_scene load_steps=6 format=3 uid="uid://b7x0m2jpl04ln"]
 
 [ext_resource type="Script" path="res://selectBallsScene.gd" id="1_6im3y"]
 [ext_resource type="PackedScene" uid="uid://by4uoj0h1dlnb" path="res://BaseBall.tscn" id="2_sffph"]
 [ext_resource type="PackedScene" uid="uid://ddmlejv4wxf3a" path="res://MetalBall.tscn" id="3_sdd0d"]
 [ext_resource type="PackedScene" uid="uid://bs13w27wn7o8j" path="res://RubberBall.tscn" id="4_b33w2"]
+[ext_resource type="PackedScene" uid="uid://qncxhjgx1wsg" path="res://MagnetBall.tscn" id="5_1ae50"]
 
 [node name="selectBallsScene" type="Node2D"]
 script = ExtResource("1_6im3y")
@@ -36,4 +37,14 @@ self_modulate = Color(1, 1, 1, 0)
 offset_left = -25.0
 offset_top = -25.0
 offset_right = 27.0
+offset_bottom = 25.0
+
+[node name="MagnetBall" parent="." instance=ExtResource("5_1ae50")]
+position = Vector2(358, 500)
+
+[node name="MagnetButton" type="Button" parent="MagnetBall"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -26.0
+offset_top = -25.0
+offset_right = 26.0
 offset_bottom = 25.0

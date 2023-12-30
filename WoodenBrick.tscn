@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cy4cwoqs34rwm"]
+
+[ext_resource type="Script" path="res://WoodenBrick.gd" id="1_evqhl"]
+[ext_resource type="Texture2D" uid="uid://c5goiebykpa77" path="res://art/WoodenBrick.png" id="1_fn8g3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nmc74"]
+size = Vector2(100, 20)
+
+[node name="WoodenBrick" type="RigidBody2D"]
+collision_mask = 0
+script = ExtResource("1_evqhl")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_fn8g3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nmc74")
