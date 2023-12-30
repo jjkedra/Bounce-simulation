@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7x0m2jpl04ln"]
+
+[ext_resource type="Script" path="res://selectBallsScene.gd" id="1_6im3y"]
+[ext_resource type="PackedScene" uid="uid://by4uoj0h1dlnb" path="res://BaseBall.tscn" id="2_sffph"]
+[ext_resource type="PackedScene" uid="uid://ddmlejv4wxf3a" path="res://MetalBall.tscn" id="3_sdd0d"]
+[ext_resource type="PackedScene" uid="uid://bs13w27wn7o8j" path="res://RubberBall.tscn" id="4_b33w2"]
+
+[node name="selectBallsScene" type="Node2D"]
+script = ExtResource("1_6im3y")
+
+[node name="BaseBall" parent="." instance=ExtResource("2_sffph")]
+position = Vector2(184, 382)
+
+[node name="BaseBallButton" type="Button" parent="BaseBall"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+
+[node name="MetalBall" parent="." instance=ExtResource("3_sdd0d")]
+position = Vector2(358, 382)
+
+[node name="MetalBallButton" type="Button" parent="MetalBall"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -26.0
+offset_top = -25.0
+offset_right = 26.0
+offset_bottom = 25.0
+
+[node name="RubberBall" parent="." instance=ExtResource("4_b33w2")]
+position = Vector2(532, 382)
+
+[node name="RuberBallButton" type="Button" parent="RubberBall"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 27.0
+offset_bottom = 25.0

@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnvrxnptdt7hw"]
+
+[ext_resource type="Script" path="res://EditorOverlay.gd" id="1_qxurv"]
+
+[node name="EditorOverlay" type="Node2D"]
+script = ExtResource("1_qxurv")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_top = 749.0
+offset_right = 699.0
+offset_bottom = 800.0
+alignment = 1
+metadata/_edit_group_ = true
+
+[node name="CenterContainer3" type="CenterContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="PButton" type="Button" parent="HBoxContainer/CenterContainer3"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Platforms"
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="HBoxContainer/CenterContainer/MarginContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Start"
+
+[node name="CenterContainer2" type="CenterContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="BButton" type="Button" parent="HBoxContainer/CenterContainer2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Balls"
