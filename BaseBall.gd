@@ -22,7 +22,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if !can_grab:
 		if !can_trigger:
 			trigger_timer += delta
 			if trigger_timer >= trigger_cooldown:

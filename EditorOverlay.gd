@@ -8,7 +8,6 @@ var panning = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
 	$HBoxContainer/CenterContainer2/BButton.connect("pressed", _on_balls_button_pressed)
 	$HBoxContainer/CenterContainer3/PButton.connect("pressed", _on_brick_button_pressed)
 	$HBoxContainer/CenterContainer/MarginContainer/StartButton.connect("pressed", _start_game)

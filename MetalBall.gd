@@ -10,7 +10,12 @@ func _init():
 	const physics_material_path = "res://pmaterial/metal.tres"
 	var physics_material = preload(physics_material_path)
 	set_physics_material_override(physics_material)
-	self.add_to_group("metal")
+
+func _process(delta):
+	pass
+
+func _ready():
+	$Area2D.add_to_group("metal")
 
 func get_audio_file():
 	return metal_audio_file

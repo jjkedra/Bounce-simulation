@@ -6,10 +6,11 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_noyki"]
 radius = 25.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_wdvcb"]
-radius = 635.064
+[sub_resource type="CircleShape2D" id="CircleShape2D_dy7sg"]
+radius = 90.0222
 
 [node name="MagnetBall" type="RigidBody2D"]
+rotation = 1.5708
 mass = 2.15
 script = ExtResource("1_0f4kr")
 
@@ -19,10 +20,17 @@ texture = ExtResource("2_oo7bb")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_noyki")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="NorthArea" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_wdvcb")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NorthArea"]
+position = Vector2(-7.62939e-06, -91)
+shape = SubResource("CircleShape2D_dy7sg")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_MetalEntered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_MetalExited"]
+[node name="SouthArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SouthArea"]
+position = Vector2(7.62939e-06, 91)
+shape = SubResource("CircleShape2D_dy7sg")
+
+[connection signal="body_entered" from="NorthArea" to="." method="_on_MetalEntered"]
+[connection signal="body_exited" from="NorthArea" to="." method="_on_MetalExited"]

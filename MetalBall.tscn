@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddmlejv4wxf3a"]
+[gd_scene load_steps=5 format=3 uid="uid://ddmlejv4wxf3a"]
 
 [ext_resource type="Script" path="res://MetalBall.gd" id="1_x7b36"]
 [ext_resource type="Texture2D" uid="uid://12t8fx5hjvgc" path="res://art/MetalBall.png" id="2_0tayh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dtv0y"]
 radius = 24.0208
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xar6p"]
+radius = 73.0
 
 [node name="MetalBall" type="RigidBody2D"]
 mass = 10.0
@@ -19,5 +22,10 @@ texture = ExtResource("2_0tayh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_dtv0y")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_xar6p")
 
 [connection signal="body_entered" from="." to="." method="_on_Ball_body_entered"]
