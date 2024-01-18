@@ -1,10 +1,16 @@
 extends Node2D
 
+const defualt_gravity = 980
+
 var selectBallsScene = preload("res://selectBallsScene.tscn").instantiate()
 var selectBrickScene = preload("res://selectBrickScene.tscn").instantiate()
 var selectedScene = null
 var panned_item = null
 var panning = false
+
+var g_slider
+var h_slider
+var v_slider
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,6 +20,10 @@ func _ready():
 	$VBoxContainer/HBoxContainer2/CenterContainer/RestartButton.connect("pressed", _restart_game)
 	selectBallsScene.connect("ball_selected", _on_data_received)
 	selectBrickScene.connect("brick_selected", _on_data_received)
+	
+	g_slider = $VBoxContainer/HBoxContainer2/CenterContainer3/GSlider
+	h_slider = $HSlider
+	v_slider = $VSlider
 
 func _on_balls_button_pressed():
 	selectedScene = selectBallsScene
@@ -34,6 +44,11 @@ func _restart_game():
 		remove_child(ball)
 	for brick in get_tree().get_nodes_in_group("bricks"):
 		remove_child(brick)
+	PhysicsServer2D.area_set_param(get_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY, defualt_gravity)
+	PhysicsServer2D.area_set_param(get_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY_VECTOR, Vector2(0, 1))
+	g_slider.value = defualt_gravity
+	h_slider.value = 0
+	v_slider.value = 1
 
 func _pause_game():
 	for ball in get_tree().get_nodes_in_group("balls"):
@@ -94,8 +109,14 @@ func _input(event):
 					panning = false
 					panned_item = null
 
-func _on_h_slider_value_changed(value):
+func _on_g_slider_value_changed(value):
 	PhysicsServer2D.area_set_param(get_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY, value)
+
+func _on_h_slider_value_changed(value):
+	PhysicsServer2D.area_set_param(get_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY_VECTOR, Vector2(value, v_slider.value))
+
+func _on_v_slider_value_changed(value):
+	PhysicsServer2D.area_set_param(get_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY_VECTOR, Vector2(h_slider.value, value))
 
 func hideScene():
 	self.visible = false
@@ -108,4 +129,3 @@ func handle_scene_selection():
 	if selectedScene:
 		self.hideScene()
 		get_tree().root.add_child(selectedScene)
-

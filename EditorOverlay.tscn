@@ -5,6 +5,28 @@
 [node name="EditorOverlay" type="Node2D"]
 script = ExtResource("1_qxurv")
 
+[node name="HSlider" type="HSlider" parent="."]
+offset_left = 250.0
+offset_top = 10.0
+offset_right = 450.0
+offset_bottom = 26.0
+min_value = -1.0
+max_value = 1.0
+step = 0.05
+tick_count = 3
+
+[node name="VSlider" type="VSlider" parent="."]
+offset_left = 26.0
+offset_top = 500.0
+offset_right = 42.0
+offset_bottom = 700.0
+rotation = 3.14159
+min_value = -1.0
+max_value = 1.0
+step = 0.05
+value = 1.0
+tick_count = 3
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 offset_top = 699.0
 offset_right = 699.0
@@ -54,7 +76,7 @@ alignment = 1
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 
-[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer2/CenterContainer3"]
+[node name="GSlider" type="HSlider" parent="VBoxContainer/HBoxContainer2/CenterContainer3"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 max_value = 5000.0
@@ -80,4 +102,6 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Toggle grid"
 
-[connection signal="value_changed" from="VBoxContainer/HBoxContainer2/CenterContainer3/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="VSlider" to="." method="_on_v_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer2/CenterContainer3/GSlider" to="." method="_on_g_slider_value_changed"]
