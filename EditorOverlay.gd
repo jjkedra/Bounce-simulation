@@ -8,9 +8,10 @@ var panning = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$HBoxContainer/CenterContainer2/BButton.connect("pressed", _on_balls_button_pressed)
-	$HBoxContainer/CenterContainer3/PButton.connect("pressed", _on_brick_button_pressed)
-	$HBoxContainer/CenterContainer/MarginContainer/StartButton.connect("pressed", _start_game)
+	$VBoxContainer/HBoxContainer/CenterContainer2/BButton.connect("pressed", _on_balls_button_pressed)
+	$VBoxContainer/HBoxContainer/CenterContainer3/PButton.connect("pressed", _on_brick_button_pressed)
+	$VBoxContainer/HBoxContainer/CenterContainer/MarginContainer/StartButton.connect("pressed", _start_game)
+	$VBoxContainer/HBoxContainer2/CenterContainer/RestartButton.connect("pressed", _restart_game)
 	selectBallsScene.connect("ball_selected", _on_data_received)
 	selectBrickScene.connect("brick_selected", _on_data_received)
 
@@ -28,6 +29,12 @@ func _start_game():
 	for brick in get_tree().get_nodes_in_group("bricks"):
 		brick.freeze_brick(false)
 
+func _restart_game():
+	for ball in get_tree().get_nodes_in_group("balls"):
+		remove_child(ball)
+	for brick in get_tree().get_nodes_in_group("bricks"):
+		remove_child(brick)
+
 func _pause_game():
 	for ball in get_tree().get_nodes_in_group("balls"):
 		ball.freeze_ball(true)
@@ -37,7 +44,8 @@ func _pause_game():
 func _on_data_received(data):
 	print("Data: ", data)
 	self.showScene()
-	spawn_entity(data)
+	if (data != -1):
+		spawn_entity(data)
 
 # Code to spawn the selected entity at mouse position
 func spawn_entity(entity_type: int):  # Assuming entity_type is passed to decide the type of entity to spawn
@@ -86,6 +94,9 @@ func _input(event):
 					panning = false
 					panned_item = null
 
+func _on_h_slider_value_changed(value):
+	PhysicsServer2D.area_set_param(get_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY, value)
+
 func hideScene():
 	self.visible = false
 
@@ -97,3 +108,4 @@ func handle_scene_selection():
 	if selectedScene:
 		self.hideScene()
 		get_tree().root.add_child(selectedScene)
+

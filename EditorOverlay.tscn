@@ -5,39 +5,79 @@
 [node name="EditorOverlay" type="Node2D"]
 script = ExtResource("1_qxurv")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-offset_top = 749.0
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_top = 699.0
 offset_right = 699.0
-offset_bottom = 800.0
+offset_bottom = 799.0
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
 alignment = 1
 metadata/_edit_group_ = true
 
-[node name="CenterContainer3" type="CenterContainer" parent="HBoxContainer"]
+[node name="CenterContainer3" type="CenterContainer" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
-[node name="PButton" type="Button" parent="HBoxContainer/CenterContainer3"]
+[node name="PButton" type="Button" parent="VBoxContainer/HBoxContainer/CenterContainer3"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Platforms"
 
-[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/CenterContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/CenterContainer"]
 layout_mode = 2
 
-[node name="StartButton" type="Button" parent="HBoxContainer/CenterContainer/MarginContainer"]
+[node name="StartButton" type="Button" parent="VBoxContainer/HBoxContainer/CenterContainer/MarginContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "Start"
 
-[node name="CenterContainer2" type="CenterContainer" parent="HBoxContainer"]
+[node name="CenterContainer2" type="CenterContainer" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
-[node name="BButton" type="Button" parent="HBoxContainer/CenterContainer2"]
+[node name="BButton" type="Button" parent="VBoxContainer/HBoxContainer/CenterContainer2"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Balls"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CenterContainer3" type="CenterContainer" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer2/CenterContainer3"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+max_value = 5000.0
+value = 980.0
+tick_count = 15
+ticks_on_borders = true
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="RestartButton" type="Button" parent="VBoxContainer/HBoxContainer2/CenterContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Restart"
+
+[node name="CenterContainer2" type="CenterContainer" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="GridButton" type="Button" parent="VBoxContainer/HBoxContainer2/CenterContainer2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Toggle grid"
+
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer2/CenterContainer3/HSlider" to="." method="_on_h_slider_value_changed"]
