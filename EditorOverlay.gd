@@ -114,9 +114,13 @@ func _on_g_slider_value_changed(value):
 
 func _on_h_slider_value_changed(value):
 	PhysicsServer2D.area_set_param(get_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY_VECTOR, Vector2(value, v_slider.value))
+	_pause_game()
+	_start_game()
 
 func _on_v_slider_value_changed(value):
 	PhysicsServer2D.area_set_param(get_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY_VECTOR, Vector2(h_slider.value, value))
+	_pause_game()
+	_start_game()
 
 func hideScene():
 	self.visible = false
