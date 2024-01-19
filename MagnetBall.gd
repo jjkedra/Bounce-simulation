@@ -12,6 +12,9 @@ var detectedSouthAreasSOUTH = []
 var detectedNorthAreasSOUTH = []
 var detectedMetalAreasSOUTH = []
 
+var north_area
+var south_area
+
 func _init():
 	super()
 	print("AYO FROM MAGNETO")
@@ -20,6 +23,9 @@ func _init():
 	set_physics_material_override(physics_material)
 
 func _ready():
+	super()
+	north_area = get_node("NorthArea")
+	south_area = get_node("SouthArea")
 	$NorthArea.add_to_group("north")
 	$SouthArea.add_to_group("south")
 	$NorthArea.connect("area_entered", _on_NorthAreaEntered)
@@ -120,3 +126,11 @@ func apply_magnetic_force(area, force_type):
 	var force_magnitude = 1000.0 / distance  # You can adjust this value for the strength of the force
 	var force = force_direction * force_magnitude
 	self.apply_central_impulse(force)  # Apply force to self in opposite direction
+	
+func resize(modifier):
+	if sprite2d.scale.x + modifier > 0 and sprite2d.scale.x + modifier > 0:
+		north_area.scale.x += modifier
+		north_area.scale.y += modifier
+		south_area.scale.x += modifier
+		south_area.scale.y += modifier
+	super(modifier)

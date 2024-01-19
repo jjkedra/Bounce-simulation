@@ -1,6 +1,6 @@
 extends Node2D
 
-const defualt_gravity = 980
+const default_gravity = 980
 
 var selectBallsScene = preload("res://selectBallsScene.tscn").instantiate()
 var selectBrickScene = preload("res://selectBrickScene.tscn").instantiate()
@@ -44,9 +44,9 @@ func _restart_game():
 		remove_child(ball)
 	for brick in get_tree().get_nodes_in_group("bricks"):
 		remove_child(brick)
-	PhysicsServer2D.area_set_param(get_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY, defualt_gravity)
+	PhysicsServer2D.area_set_param(get_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY, default_gravity)
 	PhysicsServer2D.area_set_param(get_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY_VECTOR, Vector2(0, 1))
-	g_slider.value = defualt_gravity
+	g_slider.value = default_gravity
 	h_slider.value = 0
 	v_slider.value = 1
 
@@ -59,7 +59,7 @@ func _pause_game():
 func _on_data_received(data):
 	print("Data: ", data)
 	self.showScene()
-	if (data != -1):
+	if data != -1:
 		spawn_entity(data)
 
 # Code to spawn the selected entity at mouse position
@@ -103,6 +103,15 @@ func _input(event):
 			if event.button_mask == MOUSE_BUTTON_LEFT:  # Check if left mouse button is pressed
 				var mouse_pos = get_global_mouse_position()
 				panned_item.position = mouse_pos
+		elif event is InputEventKey:
+			if event.is_action("ui_right"):
+				panned_item.rotation_degrees += 2
+			elif event.is_action("ui_left"):
+				panned_item.rotation_degrees -= 2
+			elif event.is_action("ui_up"):
+				panned_item.resize(0.05)
+			elif event.is_action("ui_down"):
+				panned_item.resize(-0.05)
 		else:
 			if event is InputEventMouseButton:
 				if event.button_mask == MOUSE_BUTTON_LEFT and event.pressed:
