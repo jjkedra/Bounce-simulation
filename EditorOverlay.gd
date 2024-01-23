@@ -11,6 +11,7 @@ var panning = false
 var g_slider
 var h_slider
 var v_slider
+var grid
 
 var g_start_drag_value = default_gravity
 
@@ -20,12 +21,14 @@ func _ready():
 	$VBoxContainer/HBoxContainer/CenterContainer3/PButton.connect("pressed", _on_brick_button_pressed)
 	$VBoxContainer/HBoxContainer/CenterContainer/MarginContainer/StartButton.connect("pressed", _start_game)
 	$VBoxContainer/HBoxContainer2/CenterContainer/RestartButton.connect("pressed", _restart_game)
+	$VBoxContainer/HBoxContainer2/CenterContainer2/GridButton.connect("pressed", _on_grid_button_pressed)
 	selectBallsScene.connect("ball_selected", _on_data_received)
 	selectBrickScene.connect("brick_selected", _on_data_received)
 	
 	g_slider = $VBoxContainer/HBoxContainer2/CenterContainer3/VBoxContainer/GSlider
 	h_slider = $HSlider
 	v_slider = $VSlider
+	grid = $TextureRect
 
 func _on_balls_button_pressed():
 	selectedScene = selectBallsScene
@@ -52,6 +55,9 @@ func _restart_game():
 	h_slider.value = 0
 	v_slider.value = 1
 	g_start_drag_value = default_gravity
+	
+func _on_grid_button_pressed():
+	grid.visible = !grid.visible
 
 func _pause_game():
 	for ball in get_tree().get_nodes_in_group("balls"):
