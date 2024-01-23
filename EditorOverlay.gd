@@ -12,6 +12,8 @@ var g_slider
 var h_slider
 var v_slider
 
+var g_start_drag_value = default_gravity
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$VBoxContainer/HBoxContainer/CenterContainer2/BButton.connect("pressed", _on_balls_button_pressed)
@@ -49,6 +51,7 @@ func _restart_game():
 	g_slider.value = default_gravity
 	h_slider.value = 0
 	v_slider.value = 1
+	g_start_drag_value = default_gravity
 
 func _pause_game():
 	for ball in get_tree().get_nodes_in_group("balls"):
@@ -118,18 +121,27 @@ func _input(event):
 					panning = false
 					panned_item = null
 
+func _on_g_slider_drag_started():
+	g_start_drag_value = PhysicsServer2D.area_get_param(get_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY)
+
 func _on_g_slider_value_changed(value):
+	var prev_value = PhysicsServer2D.area_get_param(get_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY)
 	PhysicsServer2D.area_set_param(get_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY, value)
+	if prev_value == 0 or g_start_drag_value == 0:
+		_pause_game()
+		_start_game()
 
 func _on_h_slider_value_changed(value):
 	PhysicsServer2D.area_set_param(get_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY_VECTOR, Vector2(value, v_slider.value))
-	_pause_game()
-	_start_game()
+	if PhysicsServer2D.area_get_param(get_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY) != 0:
+		_pause_game()
+		_start_game()
 
 func _on_v_slider_value_changed(value):
 	PhysicsServer2D.area_set_param(get_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY_VECTOR, Vector2(h_slider.value, value))
-	_pause_game()
-	_start_game()
+	if PhysicsServer2D.area_get_param(get_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY) != 0:
+		_pause_game()
+		_start_game()
 
 func hideScene():
 	self.visible = false
