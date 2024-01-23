@@ -23,7 +23,7 @@ func _ready():
 	selectBallsScene.connect("ball_selected", _on_data_received)
 	selectBrickScene.connect("brick_selected", _on_data_received)
 	
-	g_slider = $VBoxContainer/HBoxContainer2/CenterContainer3/GSlider
+	g_slider = $VBoxContainer/HBoxContainer2/CenterContainer3/VBoxContainer/GSlider
 	h_slider = $HSlider
 	v_slider = $VSlider
 

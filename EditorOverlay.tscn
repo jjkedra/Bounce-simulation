@@ -15,6 +15,15 @@ max_value = 1.0
 step = 0.1
 tick_count = 3
 
+[node name="HLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(150, 0)
+offset_left = 275.0
+offset_top = 26.0
+offset_right = 425.0
+offset_bottom = 49.0
+text = "Gravity vector (x)"
+horizontal_alignment = 1
+
 [node name="VSlider" type="VSlider" parent="."]
 offset_left = 26.0
 offset_top = 500.0
@@ -26,6 +35,17 @@ max_value = 1.0
 step = 0.1
 value = 1.0
 tick_count = 3
+
+[node name="VLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(150, 0)
+offset_left = 49.0
+offset_top = 325.0
+offset_right = 199.0
+offset_bottom = 348.0
+rotation = 1.5708
+text = "Gravity vector (y)
+"
+horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 offset_top = 699.0
@@ -76,13 +96,21 @@ alignment = 1
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 
-[node name="GSlider" type="HSlider" parent="VBoxContainer/HBoxContainer2/CenterContainer3"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2/CenterContainer3"]
+layout_mode = 2
+
+[node name="GSlider" type="HSlider" parent="VBoxContainer/HBoxContainer2/CenterContainer3/VBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 max_value = 5000.0
 value = 980.0
 tick_count = 15
 ticks_on_borders = true
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2/CenterContainer3/VBoxContainer"]
+layout_mode = 2
+text = "Gravity force"
+horizontal_alignment = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(100, 0)
@@ -104,5 +132,5 @@ text = "Toggle grid"
 
 [connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="value_changed" from="VSlider" to="." method="_on_v_slider_value_changed"]
-[connection signal="drag_started" from="VBoxContainer/HBoxContainer2/CenterContainer3/GSlider" to="." method="_on_g_slider_drag_started"]
-[connection signal="value_changed" from="VBoxContainer/HBoxContainer2/CenterContainer3/GSlider" to="." method="_on_g_slider_value_changed"]
+[connection signal="drag_started" from="VBoxContainer/HBoxContainer2/CenterContainer3/VBoxContainer/GSlider" to="." method="_on_g_slider_drag_started"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer2/CenterContainer3/VBoxContainer/GSlider" to="." method="_on_g_slider_value_changed"]
