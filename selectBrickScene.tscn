@@ -7,6 +7,15 @@
 [node name="selectBrickScene" type="Node2D"]
 script = ExtResource("1_0vdlj")
 
+[node name="Label" type="Label" parent="."]
+offset_top = 45.0
+offset_right = 700.0
+offset_bottom = 120.0
+text = "After choosing object:
+- use LEFT and RIGHT arrow keys to rotate
+- use UP and DOWN arrow keys to change size"
+horizontal_alignment = 1
+
 [node name="MetalBrick" parent="." instance=ExtResource("1_uqt1n")]
 position = Vector2(532, 382)
 collision_mask = 1
