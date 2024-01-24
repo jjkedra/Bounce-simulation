@@ -7,6 +7,7 @@ var selectBrickScene = preload("res://selectBrickScene.tscn").instantiate()
 var selectedScene = null
 var panned_item = null
 var panning = false
+var started = false
 
 var g_slider
 var h_slider
@@ -35,16 +36,19 @@ func _ready():
 func _on_balls_button_pressed():
 	selectedScene = selectBallsScene
 	handle_scene_selection()
+	started = false
 
 func _on_brick_button_pressed():
 	selectedScene = selectBrickScene
 	handle_scene_selection()
+	started = false
 
 func _start_game():
 	for ball in get_tree().get_nodes_in_group("balls"):
 		ball.freeze_ball(false)
 	for brick in get_tree().get_nodes_in_group("bricks"):
 		brick.freeze_brick(false)
+	started = true
 
 func _restart_game():
 	for ball in get_tree().get_nodes_in_group("balls"):
@@ -57,6 +61,7 @@ func _restart_game():
 	h_slider.value = 0
 	v_slider.value = 1
 	g_start_drag_value = default_gravity
+	started = false
 	
 func _on_grid_button_pressed():
 	grid.visible = !grid.visible
@@ -136,19 +141,19 @@ func _on_g_slider_drag_started():
 func _on_g_slider_value_changed(value):
 	var prev_value = PhysicsServer2D.area_get_param(get_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY)
 	PhysicsServer2D.area_set_param(get_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY, value)
-	if prev_value == 0 or g_start_drag_value == 0:
+	if (prev_value == 0 or g_start_drag_value == 0) and started:
 		_pause_game()
 		_start_game()
 
 func _on_h_slider_value_changed(value):
 	PhysicsServer2D.area_set_param(get_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY_VECTOR, Vector2(value, v_slider.value))
-	if PhysicsServer2D.area_get_param(get_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY) != 0:
+	if PhysicsServer2D.area_get_param(get_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY) != 0 and started:
 		_pause_game()
 		_start_game()
 
 func _on_v_slider_value_changed(value):
 	PhysicsServer2D.area_set_param(get_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY_VECTOR, Vector2(h_slider.value, value))
-	if PhysicsServer2D.area_get_param(get_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY) != 0:
+	if PhysicsServer2D.area_get_param(get_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY) != 0 and started:
 		_pause_game()
 		_start_game()
 
