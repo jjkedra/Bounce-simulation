@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dnvrxnptdt7hw"]
+[gd_scene load_steps=4 format=3 uid="uid://dnvrxnptdt7hw"]
 
 [ext_resource type="Script" path="res://EditorOverlay.gd" id="1_qxurv"]
 [ext_resource type="Texture2D" uid="uid://jfhk020m7i2r" path="res://art/tile.png" id="2_2sj2s"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_248mj"]
+line_spacing = 2.0
+font_color = Color(0.741176, 0.741176, 0.741176, 1)
 
 [node name="EditorOverlay" type="Node2D"]
 script = ExtResource("1_qxurv")
@@ -12,6 +16,47 @@ offset_right = 700.0
 offset_bottom = 800.0
 texture = ExtResource("2_2sj2s")
 stretch_mode = 1
+
+[node name="RulerLabel" type="Label" parent="."]
+visible = false
+offset_left = 660.0
+offset_right = 700.0
+offset_bottom = 800.0
+text = "775
+750
+725
+700
+675
+650
+625
+600
+575
+550
+525
+500
+475
+450
+425
+400
+375
+350
+325
+300
+275
+250
+225
+200
+175
+150
+125
+100
+75
+50
+25
+"
+label_settings = SubResource("LabelSettings_248mj")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HSlider" type="HSlider" parent="."]
 offset_left = 250.0

@@ -12,6 +12,7 @@ var g_slider
 var h_slider
 var v_slider
 var grid
+var ruler
 
 var g_start_drag_value = default_gravity
 
@@ -29,6 +30,7 @@ func _ready():
 	h_slider = $HSlider
 	v_slider = $VSlider
 	grid = $TextureRect
+	ruler = $RulerLabel
 
 func _on_balls_button_pressed():
 	selectedScene = selectBallsScene
@@ -58,6 +60,7 @@ func _restart_game():
 	
 func _on_grid_button_pressed():
 	grid.visible = !grid.visible
+	ruler.visible = grid.visible
 
 func _pause_game():
 	for ball in get_tree().get_nodes_in_group("balls"):
